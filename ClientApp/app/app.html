@@ -1,0 +1,26 @@
+<div style="display: flex; align-items: center; justify-content: center; flex-direction: column">
+    <h1 *ngIf="!users" class="text-center">
+        <em>Loading...</em>
+    </h1>
+
+    <div>
+        <table style="align-self: center">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr *ngFor="let user of users">
+                <td>{{user.userId}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <button (click)="setPage(0)">First</button>
+        <button *ngFor="let page of pages" (click)="setPage(page)">{{page}}</button>
+        <button (click)="setPage(pageCount-1)">Last</button>
+    </div>
+</div>

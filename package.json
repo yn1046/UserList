@@ -1,0 +1,46 @@
+{
+  "name": "userlist",
+  "version": "1.0.0",
+  "description": "ASP.NET Core + Angular app for displaying a list of users",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yn1046/UserList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yn1046/UserList/issues"
+  },
+  "homepage": "https://github.com/yn1046/UserList#readme",
+  "dependencies": {
+    "@angular/common": "^6.1.9",
+    "@angular/compiler": "^6.1.9",
+    "@angular/core": "^6.1.9",
+    "@angular/forms": "^6.1.9",
+    "@angular/platform-browser": "^6.1.9",
+    "@angular/platform-browser-dynamic": "^6.1.9",
+    "core-js": "^2.5.7",
+    "rxjs": "^6.3.3",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@types/node": "^10.11.6",
+    "@types/webpack-env": "^1.13.6",
+    "typescript": "^3.1.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-dev-middleware": "^3.4.0",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "aspnet-prerendering": "^3.0.1",
+    "aspnet-webpack": "^3.0.0",
+    "raw-loader": "^0.5.1",
+    "html-loader": "^0.5.5"
+  }
+}
