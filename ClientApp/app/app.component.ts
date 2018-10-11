@@ -45,4 +45,9 @@ export class AppComponent {
         this.pages = pages.slice(leftBorder, rightBorder);
         this.loadUsers(page);
     }
+    
+    async toLastPage() {
+        await this.loadPageCount();
+        this.setPage(this.pageCount-1);
+    }
 }

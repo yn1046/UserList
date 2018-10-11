@@ -10,6 +10,8 @@ using UserList.Models;
 using UserList.Models.DatabaseModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using UserList.Models.TransferModels;
+using System.IO;
 
 namespace UserList.Services
 {
@@ -69,25 +71,43 @@ namespace UserList.Services
                 IQueryable<User> users = db.Users;
                 if (page != 0) users = users.Skip(page * pageSize);
                 users = users.Take(pageSize);
-                return Json(users);
+                var transferUsers = users.Select(u => new UserTransfer
+                {
+                    UserId = u.UserId,
+                    Name = u.Name,
+                    Age = u.Age
+                });
+                return Json(transferUsers);
             }
         }
 
-        public string AddUser(User user)
+        public async Task<string> AddUser(Stream body)
         {
+            var receivedUser = await GetFromBody<UserTransfer>(body);
             using (var db = new AppDbContext())
             {
+                var user = new User
+                {
+                    Name = receivedUser.Name,
+                    Age = receivedUser.Age
+                };
                 db.Users.Add(user);
                 db.SaveChanges();
-                return Json(user);
+                receivedUser.UserId = user.UserId;
+                return Json(receivedUser);
             }
         }
 
-        private string Json(object value)
+        private string Json(object value) => JsonConvert.SerializeObject(value);
+
+        private async Task<T> GetFromBody<T>(Stream body)
         {
-            var serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            return JsonConvert.SerializeObject(value, serializerSettings);
+            string content;
+            using (var sr = new StreamReader(body))
+            {
+                content = await sr.ReadToEndAsync();
+            }
+            return JsonConvert.DeserializeObject<T>(content);
         }
     }
 }

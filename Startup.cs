@@ -52,6 +52,11 @@ namespace UserList
                         
                     await response.WriteAsync(userService.GetUsers(id));
                 });
+
+                router.MapPost("/api/users", async (request, response, routeData) =>
+                {
+                    await response.WriteAsync(await userService.AddUser(request.Body));
+                });
             });
 
             app.Run(async (context) =>

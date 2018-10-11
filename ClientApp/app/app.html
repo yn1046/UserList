@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; justify-content: center; flex-direction: column">
-    <add-user></add-user>
+    <add-user (submitted)="toLastPage()"></add-user>
 
     <h1 *ngIf="!users" class="text-center">
         <em>Loading...</em>
@@ -23,6 +23,6 @@
     <div>
         <button (click)="setPage(0)">First</button>
         <button *ngFor="let page of pages" (click)="setPage(page)">{{page}}</button>
-        <button (click)="setPage(pageCount-1)">Last</button>
+        <button (click)="toLastPage()">Last</button>
     </div>
 </div>
