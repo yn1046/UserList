@@ -14,4 +14,8 @@ export default class DataService {
     getPageCount() {
         return this.http.get('/api/pageCount');
     }
+
+    addUser(user: User) {
+        return this.http.post('/api/users', user);
+    }
 }

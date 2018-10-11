@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import User from './models/user';
 import DataService from './services/data.service';
-import { map } from 'rxjs/operators'
 
 @Component({
     selector: 'app',
@@ -39,11 +38,10 @@ export class AppComponent {
         let leftBorder: number = page - 5;
         let rightBorder: number = page + 5;
         leftBorder = Math.max(leftBorder, 0);
-        rightBorder = Math.min(rightBorder, this.pageCount)
+        rightBorder = Math.min(rightBorder, this.pageCount);
         if (page < 5) rightBorder = Math.min(10, this.pageCount);
         else if (page > this.pageCount - 5) leftBorder = Math.max(0, this.pageCount - 10);
-        console.log({pageCount: this.pageCount,
-            leftBorder, rightBorder})
+
         this.pages = pages.slice(leftBorder, rightBorder);
         this.loadUsers(page);
     }

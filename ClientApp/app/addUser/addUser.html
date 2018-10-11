@@ -1,0 +1,34 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" formControlName="name">
+            <div *ngIf="name.errors && (name.dirty || name.touched)">
+                <div *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+                <div *ngIf="name.errors.pattern">
+                    Name should only contain letters and spaces.
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age" formControlName="age">
+            <div *ngIf="age.errors && (age.dirty || age.touched)">
+                <div *ngIf="age.errors.required">
+                    Age is required.
+                </div>
+                <div *ngIf="age.errors.min || age.errors.max">
+                    Age should be in range between 10 and 150.
+                </div>
+                <div *ngIf="age.errors.pattern">
+                    Age should only contain digits.
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="!name.valid || !age.valid">Add</button>
+    </form>
+</div>
